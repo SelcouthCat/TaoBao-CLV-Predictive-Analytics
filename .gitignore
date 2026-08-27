@@ -216,3 +216,19 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Large Data Files & Datasets
+*.csv
+*.tsv
+*.parquet
+*.zip
+*.tar.gz
+*.7z
+
+# Model weights / Cache
+*.pkl
+*.joblib
+*.model
+
+# Allow README inside data folder if present
+!data/README.md
