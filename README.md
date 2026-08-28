@@ -30,6 +30,12 @@ TaoBao-CLV-Predictive-Analytics/
 │   ├── EDA/                              # Daily trends, conversion funnel, 24h patterns
 │   ├── NBD/                              # Recency-frequency matrices, P(Alive) decay, MAE/RMSE
 │   └── XGBoost/                          # Model benchmark, SHAP bar, SHAP beeswarm
+├── models/                               # output models
+│   ├── bgnbd_model.pkl                   # Stochastic BG/NBD benchmark model
+│   ├── xgb_micro_model.json & xgb_micro_model.pkl # Purely micro-behavior-based XGBoost model
+│   ├── xgb_hybrid_model.json & xgb_hybrid_model.pkl # Two-stage hybrid XGBoost model
+│   ├── shap_tree_explainer.pkl           # TreeSHAP explainer object
+│   └── model_metadata.json               # Model Metadata and Feature Specifications
 ├── notebooks/                            # Annotated end-to-end research pipelines
 │   ├── 01_eda_data_exploration.ipynb     # Chunk-ingestion, outlier cleaning, behavioral EDA
 │   ├── 02_bgnbd_probabilistic_model.ipynb # Calibration/Holdout split & BG/NBD MLE estimation
