@@ -233,7 +233,9 @@ __marimo__/
 # Ignore the oversize data in data folder
 data/*.csv
 data/raw/
+output/*.csv
 
 # Allow README and sample inside data folder if present
-!data/README.md
+!data/.gitkeep
 !data/sample_data.csv
+
