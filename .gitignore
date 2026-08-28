@@ -230,5 +230,10 @@ __marimo__/
 *.joblib
 *.model
 
-# Allow README inside data folder if present
+# Ignore the oversize data in data folder
+data/*.csv
+data/raw/
+
+# Allow README and sample inside data folder if present
 !data/README.md
+!data/sample_data.csv
