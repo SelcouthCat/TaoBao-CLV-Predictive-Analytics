@@ -51,7 +51,7 @@ To prevent Out-Of-Memory (OOM) failures from the 3.67 GB raw log file, a chunk-s
 
 | Daily Interaction Trend | Conversion Funnel | 24-Hour Behavioral Rhythm |
 | :---: | :---: | :---: |
-| ![Daily Trend](figures/EDA/fig1_behavior_trend.png) | ![Funnel](figures/EDA/fig2_behavior_conversion_funnel.png) | ![Hourly](figures/EDA/fig3_hour_behaviour_summary.png) |
+| ![Daily Trend](figures/EDA/eda_fig1_behavior_trend.png) | ![Funnel](figures/EDA/eda_fig2_behavior_conversion_funnel.png) | ![Hourly](figures/EDA/eda_fig3_hour_behaviour_summary.png) |
 
 - **Traffic Dynamics**: Page views (`pv`) dominate macro-volume, peaking significantly on weekends and promotional days.
 - **Conversion Efficiency**: `pv` $\rightarrow$ `cart` drops sharply, while `cart` $\rightarrow$ `buy` shows high conversion intent.
@@ -67,7 +67,7 @@ $$\hat{\Theta} = \{ r = 1.1744,\; \alpha = 5.5541,\; a = 1.7456 \times 10^{-15},
 
 | Expected Holdout Purchases $E[Y(3)]$ | Individual $P(\text{Alive})$ Trajectory | Actual vs. Predicted Purchases |
 | :---: | :---: | :---: |
-| ![Expected Purchases](figures/NBD/fig2_f_line_chart.png) | ![P(Alive) Line Chart](figures/NBD/fig3_Plive_line_chart.png) | ![MAE RMSE Chart](figures/NBD/fig4_MAE_RMSE_chart.png) |
+| ![Expected Purchases](figures/NBD/nbd_fig2_f_line_chart.png) | ![P(Alive) Line Chart](figures/NBD/nbd_fig3_Plive_line_chart.png) | ![MAE RMSE Chart](figures/NBD/nbd_fig4_MAE_RMSE_chart.png) |
 
 > **Diagnostic Insight**: In short promotional windows (6 days), dropout parameters $a, b \approx 0$ lead to $P(\text{Alive}) \approx 1.0$, degenerating the Pareto dropout mechanism into a pure Poisson repeat-purchase model. This empirical limitation necessitates incorporating granular clickstream behavioral signals.
 
@@ -102,7 +102,7 @@ xgb_parameters = {
 | **Model 3: Two-Stage Hybrid** | **Bayesian Priors + Micro Clickstream** | **0.6201** | **0.7197** | **+0.96%** | **+2.64%** |
 
 <p align="center">
-  <img src="figures/XGBoost/01_model_performance_comparison.png" width="70%" alt="Performance Comparison"/>
+  <img src="figures/XGBoost/xgb_fig1_model_performance_comparison.png" width="70%" alt="Performance Comparison"/>
 </p>
 
 ### Statistical Significance & Robustness
@@ -120,7 +120,7 @@ Using TreeSHAP, we explain the marginal contribution and driving direction of ea
 
 | Global Feature Importance (Mean $\|SHAP\|$) | SHAP Summary Beeswarm Distribution |
 | :---: | :---: |
-| ![SHAP Bar](figures/XGBoost/02_shap_feature_importance_bar.png) | ![SHAP Beeswarm](figures/XGBoost/03_shap_summary_beeswarm.png) |
+| ![SHAP Bar](figures/XGBoost/xgb_fig2_shap_feature_importance_bar.png) | ![SHAP Beeswarm](figures/XGBoost/xgb_fig3_shap_summary_beeswarm.png) |
 
 - **Top Predictor**: `bg_nbd_predicted_purchases` acts as the strongest macro anchor.
 - **Micro Behavioral Drivers**: `cart_count_log` and `pv_to_buy_ratio` provide the largest non-linear uplift. High cart volume strongly pushes the model prediction towards repeat conversion.
@@ -154,7 +154,7 @@ pip install -r requirements.txt
 ```
 
 ### 3. Data Setup
-1. Download the raw dataset from [Alibaba Tianchi User Behavior Dataset](https://tianchi.aliyun.com/dataset/649).
+1. Download the raw dataset from [Alibaba Tianchi User Behavior Dataset](https://tianchi.aliyun.com/dataset/649) or [Kaggle](https://www.kaggle.com/datasets/gogokerry/taobao-user-behavior).
 2. Place `UserBehavior.csv` inside the `data/` directory (or use `data/sample_data.csv` for unit testing).
 
 ### 4. Execute Notebooks sequentially
