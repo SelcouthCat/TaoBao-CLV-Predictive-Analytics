@@ -1,0 +1,113 @@
+{
+  "project": "TaoBao-CLV-Predictive-Analytics",
+  "framework": "Two-Stage Hybrid BG/NBD + XGBoost with TreeSHAP",
+  "dataset": "Alibaba Taobao User Behavior Dataset",
+  "observation_window": {
+    "calibration_period": "2017-11-25 to 2017-11-30 (6 days)",
+    "holdout_period": "2017-12-01 to 2017-12-03 (3 days)"
+  },
+  "models": {
+    "bgnbd_model": {
+      "file": "bgnbd_model.pkl",
+      "type": "Beta-Geometric/Negative Binomial Distribution (BG/NBD)",
+      "penalizer_coef": 0.01,
+      "parameters": {
+        "r": 1.174402,
+        "alpha": 5.554101,
+        "a": 1.7456e-15,
+        "b": 7.3919e-06
+      },
+      "input_features": [
+        "frequency_cal",
+        "recency_cal",
+        "T_cal"
+      ],
+      "outputs": [
+        "prob_user_alive",
+        "bg_nbd_predicted_purchases"
+      ]
+    },
+    "xgb_micro_model": {
+      "files": [
+        "xgb_micro_model.json",
+        "xgb_micro_model.pkl"
+      ],
+      "type": "XGBoost Regressor (Micro-Behavior Footprints Only)",
+      "hyperparameters": {
+        "objective": "reg:squarederror",
+        "n_estimators": 150,
+        "learning_rate": 0.05,
+        "max_depth": 4,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "reg_alpha": 0.1,
+        "reg_lambda": 1.0,
+        "random_state": 14,
+        "n_jobs": -1
+      },
+      "input_features": [
+        "pv_count_log",
+        "cart_count_log",
+        "fav_count_cal",
+        "buy_count_cal",
+        "cart_to_buy_ratio",
+        "pv_to_buy_ratio"
+      ],
+      "target": "frequency_holdout",
+      "metrics_test": {
+        "MAE": 0.6231,
+        "RMSE": 0.7233,
+        "RMSE_improvement_vs_baseline": "2.15%"
+      }
+    },
+    "xgb_hybrid_model": {
+      "files": [
+        "xgb_hybrid_model.json",
+        "xgb_hybrid_model.pkl"
+      ],
+      "type": "Two-Stage Hybrid XGBoost Regressor (Stochastic Priors + Micro Footprints)",
+      "hyperparameters": {
+        "objective": "reg:squarederror",
+        "n_estimators": 150,
+        "learning_rate": 0.05,
+        "max_depth": 4,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "reg_alpha": 0.1,
+        "reg_lambda": 1.0,
+        "random_state": 14,
+        "n_jobs": -1
+      },
+      "input_features": [
+        "frequency_cal",
+        "recency_cal",
+        "T_cal",
+        "prob_user_alive",
+        "bg_nbd_predicted_purchases",
+        "pv_count_log",
+        "cart_count_log",
+        "fav_count_cal",
+        "buy_count_cal",
+        "cart_to_buy_ratio",
+        "pv_to_buy_ratio"
+      ],
+      "target": "frequency_holdout",
+      "metrics_test": {
+        "MAE": 0.6201,
+        "RMSE": 0.7197,
+        "MAE_improvement_vs_baseline": "0.96%",
+        "RMSE_improvement_vs_baseline": "2.64%"
+      },
+      "statistical_significance": {
+        "paired_t_test": "t = 11.9723, p = 2.61e-33",
+        "wilcoxon_test": "W = 2.88e9, p = 2.57e-12",
+        "5_fold_cv_mae_reduction": "1.05%"
+      }
+    },
+    "shap_explainer": {
+      "file": "shap_tree_explainer.pkl",
+      "type": "TreeSHAP Game-Theoretic TreeExplainer",
+      "base_model": "xgb_hybrid_model"
+    }
+  }
+}
