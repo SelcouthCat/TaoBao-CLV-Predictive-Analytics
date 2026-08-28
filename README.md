@@ -164,10 +164,3 @@ jupyter notebook notebooks/01_eda_data_exploration.ipynb
 jupyter notebook notebooks/02_bgnbd_probabilistic_model.ipynb
 jupyter notebook notebooks/03_xgboost_hybrid_modeling_shap.ipynb
 ```
-
----
-
-## 📜 References
-- Fader, P. S., Hardie, B. G., & Lee, K. L. (2005). “Counting Your Customers” the Easy Way: An Alternative to the Pareto/NBD Model. *Marketing Science*, 24(2), 275-284.
-- Chen, T., & Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. In *ACM SIGKDD International Conference on Knowledge Discovery and Data Mining* (pp. 785-794).
-- Lundberg, S. M., & Lee, S. I. (2017). A Unified Approach to Interpreting Model Predictions. In *Advances in Neural Information Processing Systems (NeurIPS 30)*.
