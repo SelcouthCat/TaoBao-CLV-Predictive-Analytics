@@ -145,7 +145,7 @@ Based on the predicted purchase frequency $\hat{y}_i = E[Y_i(3)]$, customers are
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/SelcouthCat/TaoBao-CLV-Predictive-Analytics.git(https://github.com/SelcouthCat/TaoBao-CLV-Predictive-Analytics.git)
+git clone https://github.com/SelcouthCat/TaoBao-CLV-Predictive-Analytics.git
 cd TaoBao-CLV-Predictive-Analytics
 ```
 
