@@ -165,3 +165,16 @@ jupyter notebook notebooks/01_eda_data_exploration.ipynb
 jupyter notebook notebooks/02_bgnbd_probabilistic_model.ipynb
 jupyter notebook notebooks/03_xgboost_hybrid_modeling_shap.ipynb
 ```
+## 📖 Citation
+
+If you find this research or codebase useful in your academic research, please consider citing:
+
+```bibtex
+@misc{taobao_clv_predictive_analytics,
+  author = {Your Name / SelcouthCat},
+  title = {A Two-Stage Hybrid Framework Combining BG/NBD Probabilistic Model and Gradient Boosted Trees for E-Commerce CLV Prediction},
+  year = {2024},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/SelcouthCat/TaoBao-CLV-Predictive-Analytics}}
+}
